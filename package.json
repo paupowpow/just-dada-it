@@ -1,0 +1,28 @@
+{
+  "name": "template-gulp",
+  "version": "1.0.0",
+  "description": "Quick start web development: A template project using Sass, Browser Sync and running on a local server.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Paula Haertel",
+  "license": "ISC",
+  "devDependencies": {
+    "browser-sync": "^2.26.3",
+    "del": "^3.0.0",
+    "gulp": "^3.9.1",
+    "gulp-cache": "^0.4.6",
+    "gulp-imagemin": "^3.4.0",
+    "gulp-sass": "^3.2.1",
+    "gulp-uglify": "^3.0.1",
+    "gulp-useref": "^3.1.6",
+    "run-sequence": "^2.2.1",
+    "uglify-es": "^3.3.9"
+  },
+  "dependencies": {
+    "gulp-cssnano": "^2.1.3",
+    "gulp-uglify-es": "^1.0.4",
+    "uglify-es": "^3.3.9"
+  }
+}
