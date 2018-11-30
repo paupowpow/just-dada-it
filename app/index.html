@@ -1,8 +1,8 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 	<meta charset="utf-8" />
-	<title></title>
+	<title>Just Dada It!</title>
 	<meta name="description" content="">
 
 	<meta property="og:title" content="" />
@@ -17,7 +17,7 @@
 	<meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
 	<meta name="theme-color" content="#ffffff">
 
-	<link rel="apple-touch-icon" sizes="57x57" href="">
+<!-- 	<link rel="apple-touch-icon" sizes="57x57" href="">
 	<link rel="apple-touch-icon" sizes="60x60" href="">
 	<link rel="apple-touch-icon" sizes="72x72" href="">
 	<link rel="apple-touch-icon" sizes="76x76" href="">
@@ -29,7 +29,7 @@
 	<link rel="icon" type="image/png" sizes="192x192"  href="">
 	<link rel="icon" type="image/png" sizes="32x32" href="">
 	<link rel="icon" type="image/png" sizes="96x96" href="">
-	<link rel="icon" type="image/png" sizes="16x16" href="">
+	<link rel="icon" type="image/png" sizes="16x16" href=""> -->
 	<link rel="manifest" href="/manifest.json">
 
 	<!-- build:css css/styles.min.css -->
@@ -38,6 +38,33 @@
 	<!-- endbuild -->
 </head>
 <body>
+	<div class="content">
+		<h1>Just Dada It!</h1>
+		<fieldset>
+			<textarea name="yourtext" id="yourtext" placeholder="Your text here" rows="10" cols="50"></textarea>
+		</fieldset>
+		<fieldset>
+			<label for="lang">Language of the text</label>
+			<select id="lang">
+				<option value="English">English</option>
+				<option value="German">German</option>
+			</select>
+		</fieldset>
+		<fieldset>
+			<label for="font">Choose a font</label>
+			<select id="font"><br>
+				<option value="arial">Arial</option>
+				<option value="timesnewroman">Times New Roman</option>
+				<option value="lucidaconsole">Lucida Console</option>
+			</select>
+		</fieldset>
+		<input type="submit" value="Dada it!">
+	</div>
+
+	<div class="canvas">
+		<span class="unit">li</span>
+	</div>
+
 
 	<!-- build:js js/main.min.js -->
 	<script src="js/main.js"></script>
