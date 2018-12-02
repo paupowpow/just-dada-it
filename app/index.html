@@ -122,10 +122,12 @@
 		}
 
 		function splitWords(filteredWords) {
-		    return filteredWords.reduce((result, word) => {
+		    let arraysOfSplits = filteredWords.reduce((result, word) => {
 		         let splitWords = splitIt(word, []);
 		         return [...result, splitWords]
-			}, [])
+			}, []);
+
+            return [].concat.apply([], arraysOfSplits);
 		}
 
 		function splitIt(word, resultArray) {
