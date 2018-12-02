@@ -2,9 +2,8 @@ const fontSelector = document.querySelector("#font");
 const snippet = document.querySelector("#snippet");
 const outputBox = document.querySelector("#outputBox");
 
+// adapted from https://javascript.info/mouse-drag-and-drop
 snippet.onmousedown = function(e) {
-	console.log('onmousedown');
-
 	snippet.style.position = 'absolute';
 	snippet.style.zIndex = '1000';
 
@@ -18,15 +17,12 @@ snippet.onmousedown = function(e) {
 	}
 
 	function onMouseMove(e) {
-		console.log('onmousemove');
 		moveTo(e.pageX, e.pageY);
 	}
 
 	document.addEventListener('mousemove', onMouseMove);
 
-	// drop the snippet, remove unneeded handlers
 	snippet.onmouseup = function() {
-		console.log('onmouseup');
 		document.removeEventListener('mousemove', onMouseMove);
 		snippet.onmouseup = null;
 	}
