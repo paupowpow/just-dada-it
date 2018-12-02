@@ -39,7 +39,7 @@
 </head>
 <body>
 	<form id="inputForm">
-		input your text here: <input id="inputBox" type="text" name="inputText" value="I and the dog love lacy because it is sometimes hindrance to lords"><br>
+		input your text here: <input id="inputBox" type="text" name="inputText" value="I and the dog love lacy because it is sometimes hindrance to the lords"><br>
 		<input type="button" value="dada it!">
 	</form>
 	<div id="outputBox">
@@ -58,67 +58,63 @@
 		const enPronoun = ['I', 'you', 'You', 'he', 'He', 'she', 'She', 'we', 'We', 'they', 'They'];
 		const enArticles = ['the', '...'];
 
+		let endingsArray = [];
+
 		function handleText() {
 		    console.log("hi");
 		    let inputString = inputBox.value;
 		    let inputArray = inputString.split(" ");
 
-            let filteredArray = filterWords(inputArray);
-            console.log(filteredArray);
+            let wordsWithoutEndings = separateWordsFromWords(inputArray);
 
-            let splitArray = splitWords(filteredArray);
+            console.log(wordsWithoutEndings);
+
+            let splitArray = splitWords(wordsWithoutEndings);
             console.log(splitArray);
+            console.log(endingsArray);
 		}
 
-		function filterWords(inputArray) {
+		function separateWordsFromWords(inputArray) {
 		    return inputArray.map(word => {
-                console.log('checking ', word);
                 let newWord = word;
                 let tempWord = "";
-
-                //Abstract functionality!!!
                 enNouSuf.forEach(suf => {
                     let regEx = new RegExp(suf+'$');
-                    tempWord = word.replace(regEx, '');
-                    if (tempWord !== word) {
-                        newWord = tempWord;
-					}
+                    tempWord = extractEndingFromWord(word, regEx, true);
+                    if (tempWord !== word) {newWord = tempWord;}
                 });
-
                 enVerSuf.forEach(suf => {
                     let regEx = new RegExp(suf+'$');
-                    tempWord = word.replace(regEx, '');
-                    if (tempWord !== word) {
-                        newWord = tempWord;
-                    }
+                    tempWord = extractEndingFromWord(word, regEx, false);
+                    if (tempWord !== word) {newWord = tempWord;}
                 });
-
                 enAdjSuf.forEach(suf => {
                     let regEx = new RegExp(suf+'$');
-                    tempWord = word.replace(regEx, '');
-                    if (tempWord !== word) {
-                        newWord = tempWord;
-                    }
+                    tempWord = extractEndingFromWord(word, regEx, false);
+                    if (tempWord !== word) {newWord = tempWord;}
                 });
-
                 enPronoun.forEach(pronoun => {
                     let regEx = new RegExp('^'+pronoun+'$');
-                    tempWord = word.replace(regEx, '');
-                    if (tempWord !== word) {
-                        newWord = tempWord;
-                    }
+                    tempWord = extractEndingFromWord(word, regEx, false);
+                    if (tempWord !== word) {newWord = tempWord;}
                 });
-
                 enArticles.forEach(article => {
                     let regEx = new RegExp('^'+article+'$');
-                    tempWord = word.replace(regEx, '');
-                    if (tempWord !== word) {
-                        newWord = tempWord;
-                    }
+                    tempWord = extractEndingFromWord(word, regEx, false);
+                    if (tempWord !== word) {newWord = tempWord;}
                 });
-
                 return (newWord === word ? word : newWord);
             }).filter(word => word !=='');
+		}
+
+		function extractEndingFromWord(word, regex, addEndingsToArray) {
+			let indexOfEnding = word.search(regex);
+			if (indexOfEnding >= 0) {
+			    if (addEndingsToArray) {endingsArray.push(word.substring(indexOfEnding));}
+			    return word.substring(0,indexOfEnding)
+			} else {
+			    return word;
+			}
 		}
 
 		function splitWords(filteredWords) {
