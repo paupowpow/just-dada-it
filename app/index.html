@@ -39,7 +39,7 @@
 </head>
 <body>
 	<form id="inputForm">
-		input your text here: <input id="inputBox" type="text" name="inputText" value="lacy is sometimes hindrance to lords"><br>
+		input your text here: <input id="inputBox" type="text" name="inputText" value="I and the dog love lacy because it is sometimes hindrance to lords"><br>
 		<input type="button" value="dada it!">
 	</form>
 	<div id="outputBox">
@@ -64,32 +64,66 @@
 		    var inputArray = inputString.split(" ");
 
             var filteredArray = filterWords(inputArray);
-            console.log(filteredArray);
+            var splitArray = splitWords(filteredArray);
 
-		    // outputBox.innerHTML = inputBox.value;
+            console.log(filteredArray);
 		}
 
 		function filterWords(inputArray) {
 		    return inputArray.map(word => {
-		        console.log('checking ', word);
-		        let oldWord = word;
-		        let newWord = "";
-		        enNouSuf.forEach(suf => {
-		            console.log(`checking for ${suf} in ${oldWord}`);
-					newWord = oldWord.replace(suf, 'ahahahahaha');
-				});
-                console.log(`oldWord is ${oldWord}`);
-                console.log(`newWord is ${newWord}`);
-                if (newWord !== oldWord) {
-                    console.log("not the same!!!");
-                    console.log('and the new word is ', newWord);
-                    return newWord;
-                } else {
-                    return oldWord;
-                }
-			});
+                console.log('checking ', word);
+                let newWord = word;
+                let tempWord = "";
 
-			// console.log(inputArray);
+                //Abstract functionality!!!
+                enNouSuf.forEach(suf => {
+                    let regEx = new RegExp(suf+'$');
+                    tempWord = word.replace(regEx, '');
+                    if (tempWord !== word) {
+                        newWord = tempWord;
+					}
+                });
+
+                enVerSuf.forEach(suf => {
+                    let regEx = new RegExp(suf+'$');
+                    tempWord = word.replace(regEx, '');
+                    if (tempWord !== word) {
+                        newWord = tempWord;
+                    }
+                });
+
+                enAdjSuf.forEach(suf => {
+                    let regEx = new RegExp(suf+'$');
+                    tempWord = word.replace(regEx, '');
+                    if (tempWord !== word) {
+                        newWord = tempWord;
+                    }
+                });
+
+                enPronoun.forEach(pronoun => {
+                    let regEx = new RegExp('^'+pronoun+'$');
+                    tempWord = word.replace(regEx, '');
+                    if (tempWord !== word) {
+                        newWord = tempWord;
+                    }
+                });
+
+                enArticles.forEach(article => {
+                    let regEx = new RegExp('^'+article+'$');
+                    tempWord = word.replace(regEx, '');
+                    if (tempWord !== word) {
+                        newWord = tempWord;
+                    }
+                });
+
+                return (newWord === word ? word : newWord);
+            })
+		}
+
+		function splitWords(filteredWords) {
+		    return filteredWords.reduce((result, word) => {
+
+			}, [])
 		}
 
 
