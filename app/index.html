@@ -60,13 +60,14 @@
 
 		function handleText() {
 		    console.log("hi");
-		    var inputString = inputBox.value;
-		    var inputArray = inputString.split(" ");
+		    let inputString = inputBox.value;
+		    let inputArray = inputString.split(" ");
 
-            var filteredArray = filterWords(inputArray);
-            var splitArray = splitWords(filteredArray);
-
+            let filteredArray = filterWords(inputArray);
             console.log(filteredArray);
+
+            let splitArray = splitWords(filteredArray);
+            console.log(splitArray);
 		}
 
 		function filterWords(inputArray) {
@@ -117,13 +118,43 @@
                 });
 
                 return (newWord === word ? word : newWord);
-            })
+            }).filter(word => word !=='');
 		}
 
 		function splitWords(filteredWords) {
 		    return filteredWords.reduce((result, word) => {
-
+		         let splitWords = splitIt(word, []);
+		         return [...result, splitWords]
 			}, [])
+		}
+
+		function splitIt(word, resultArray) {
+		    if (word.length < 1) {return resultArray;}
+		    if (word.length === 1 || word.length === 2) {
+		        resultArray.push(word);
+		        return resultArray;
+		    }
+		    const numberOfLetters = giveNumberOfLettresInUnit();
+		    if (word.length >= numberOfLetters) {
+		        let unit1 = word.substring(0,numberOfLetters);
+		        resultArray.push(unit1);
+		        let unit2 = word.substring(numberOfLetters);
+		        if (unit2.length > 0) {
+                    if (unit2.length === 1 || unit2.length === 2) {
+                        resultArray.push(unit2)
+                    } else {
+						splitIt(unit2, resultArray);
+                    }
+				} else {
+		            return resultArray;
+				}
+		        return resultArray;
+			}
+		}
+
+		function giveNumberOfLettresInUnit() {
+            const probaArray = [1,2,2,2,2,2,2,3,3,3];
+            return probaArray[Math.floor(Math.random()*probaArray.length)];
 		}
 
 
