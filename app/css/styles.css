@@ -14,10 +14,23 @@ fieldset {
   border: none;
   margin: 10px 0; }
 
+.controls,
 .canvas {
-  padding: 1rem; }
+  padding: 1rem;
+  width: 100vw; }
+
+.canvas {
+  height: 1000px;
+  background-color: #fabada;
+  position: relative; }
   .canvas .unit {
-    font-size: 3rem;
+    height: 50px;
+    width: 50px;
+    position: absolute;
+    user-select: none;
+    cursor: pointer;
     padding: 10px;
-    box-shadow: 0px 0px 1px 0px rgba(0, 0, 0, 0.25);
-    font-weight: bold; }
+    font-weight: bold;
+    font-size: 3rem;
+    background-color: #ffffff;
+    box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.25); }
