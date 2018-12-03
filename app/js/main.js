@@ -2,7 +2,7 @@ const submitButton = document.querySelector("#submitButton");
 const inputBox = document.querySelector("#yourtext");
 const outputBox = document.querySelector("#outputBox");
 const fontSelector = document.querySelector("#font");
-const snippet = document.querySelector("#snippet");
+var snippets = document.querySelectorAll(".snippet");
 
 const enNouSuf = ['acy', 'al', 'ance', 'ence', 'dom', 'er', 'or', 'ism', 'ist', 'ity', 'ty', 'ment', 'ness', 'ship', 'sion', 'tion'];
 const enVerSuf = ['ate', 'en', 'ify', 'fy', 'ize', 'ise'];
@@ -17,7 +17,21 @@ function handleText() {
     let inputArray = inputString.split(" ");
     let wordsWithoutEndings = separateWordsFromWords(inputArray);
     let splitArray = splitWords(wordsWithoutEndings);
-    console.log(splitArray);
+    displayDivs(splitArray);
+}
+
+function displayDivs(array) {
+    array.forEach(snippet => {
+        let snippetSpan = document.createElement("span");
+        snippetSpan.classList.add("snippet");
+        snippetSpan.setAttribute("draggable", "true");
+        snippetSpan.append(snippet);
+        outputBox.append(snippetSpan);
+    });
+    snippets = document.querySelectorAll(".snippet");
+    snippets.forEach(snippet => {
+        snippet.addEventListener('mousedown', moveSnippet);
+    });
 }
 
 function separateWordsFromWords(inputArray) {
@@ -116,12 +130,14 @@ function giveNumberOfLetters() {
 }
 
 // adapted from https://javascript.info/mouse-drag-and-drop
-snippet.onmousedown = function(e) {
+
+function moveSnippet(e) {
+    let snippet = e.target;
 	snippet.style.position = 'absolute';
 	snippet.style.zIndex = '1000';
 
-	outputBox.append(snippet);
-
+	// outputBox.append(snippet);
+    console.log(e.pageX, e.pageY);
 	moveTo(e.pageX, e.pageY);
 
 	function moveTo(pageX, pageY) {
@@ -129,16 +145,17 @@ snippet.onmousedown = function(e) {
 		snippet.style.top = pageY - outputBox.offsetTop - snippet.offsetHeight / 2 + 'px';
 	}
 
-	function onMouseMove(e) {
+    document.addEventListener('mousemove', onMouseMove);
+
+	function onMouseMove() {
 		moveTo(e.pageX, e.pageY);
 	}
 
-	document.addEventListener('mousemove', onMouseMove);
 
 	snippet.onmouseup = function() {
 		document.removeEventListener('mousemove', onMouseMove);
 		snippet.onmouseup = null;
-	}
+	};
 
 	snippet.ondragstart = function() {
   		return false;

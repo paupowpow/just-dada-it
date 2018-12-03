@@ -24,8 +24,6 @@ fieldset {
   background-color: #fabada;
   position: relative; }
   .canvas .snippet {
-    height: 50px;
-    width: 50px;
     position: absolute;
     user-select: none;
     cursor: pointer;
