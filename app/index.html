@@ -1,10 +1,9 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <meta charset="utf-8"/>
-    <title></title>
-    <meta name="description" content="">
-
+	<meta charset="utf-8" />
+	<title>Just Dada It!</title>
+	<meta name="description" content="">
     <meta property="og:title" content=""/>
     <meta property="og:description" content=""/>
     <meta property="og:image" content=""/>
@@ -17,20 +16,21 @@
     <meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
     <meta name="theme-color" content="#ffffff">
 
-    <link rel="apple-touch-icon" sizes="57x57" href="">
-    <link rel="apple-touch-icon" sizes="60x60" href="">
-    <link rel="apple-touch-icon" sizes="72x72" href="">
-    <link rel="apple-touch-icon" sizes="76x76" href="">
-    <link rel="apple-touch-icon" sizes="114x114" href="">
-    <link rel="apple-touch-icon" sizes="120x120" href="">
-    <link rel="apple-touch-icon" sizes="144x144" href="">
-    <link rel="apple-touch-icon" sizes="152x152" href="">
-    <link rel="apple-touch-icon" sizes="180x180" href="">
-    <link rel="icon" type="image/png" sizes="192x192" href="">
-    <link rel="icon" type="image/png" sizes="32x32" href="">
-    <link rel="icon" type="image/png" sizes="96x96" href="">
-    <link rel="icon" type="image/png" sizes="16x16" href="">
-    <link rel="manifest" href="/manifest.json">
+<!-- 	<link rel="apple-touch-icon" sizes="57x57" href="">
+	<link rel="apple-touch-icon" sizes="60x60" href="">
+	<link rel="apple-touch-icon" sizes="72x72" href="">
+	<link rel="apple-touch-icon" sizes="76x76" href="">
+	<link rel="apple-touch-icon" sizes="114x114" href="">
+	<link rel="apple-touch-icon" sizes="120x120" href="">
+	<link rel="apple-touch-icon" sizes="144x144" href="">
+	<link rel="apple-touch-icon" sizes="152x152" href="">
+	<link rel="apple-touch-icon" sizes="180x180" href="">
+	<link rel="icon" type="image/png" sizes="192x192"  href="">
+	<link rel="icon" type="image/png" sizes="32x32" href="">
+	<link rel="icon" type="image/png" sizes="96x96" href="">
+	<link rel="icon" type="image/png" sizes="16x16" href="">
+	<link rel="manifest" href="/manifest.json"> -->
+
 
     <!-- build:css css/styles.min.css -->
     <link rel="stylesheet" href="css/normalize.css">
@@ -38,17 +38,45 @@
     <!-- endbuild -->
 </head>
 <body>
-<form id="inputForm">
-    input your text here: <input id="inputBox" type="text" name="inputText"
-                                 value="I and the dog love lacy because it is sometimes hindrance to the lords"><br>
-    <input type="button" value="dada it!">
-</form>
-<div id="outputBox">
-    out put is here
-</div>
-<!-- build:js js/main.min.js -->
-<script src="js/main.js"></script>
-<!-- endbuild -->
+	<div class="content">
+		<h1>Just Dada It!</h1>
+		<fieldset>
+			<textarea name="yourtext" id="yourtext" placeholder="Your text here" rows="10" cols="50"></textarea>
+		</fieldset>
+		<fieldset>
+			<label for="lang">Language of the text</label>
+			<select id="lang">
+				<option value="English">English</option>
+				<option value="German">German</option>
+			</select>
+		</fieldset>
+		<input type="submit" id="submitButton" value="Dada it!">
+	</div>
+
+	<!-- should only be visible after output box is populated -->
+	<div class="controls">
+		<h6>Controls</h6>
+		<fieldset>
+			<label for="font">Choose a font</label>
+			<select id="font"><br>
+				<option value="arial">Arial</option>
+				<option value="timesnewroman">Times New Roman</option>
+				<option value="times">Times</option>
+				<option value="helvetica">Helvetica</option>
+				<option value="verdana">Verdana</option>
+				<option value="georgia">Georgia</option>
+				<option value="opensans">Open Sans</option>
+			</select>
+		</fieldset>
+	</div>
+	<div class="canvas" id="outputBox">
+		<span draggable="true" class="snippet" id="snippet"></span>
+	</div>
+
+
+	<!-- build:js js/main.min.js -->
+	<script src="js/main.js"></script>
+	<!-- endbuild -->
 </body>
 </html>
 

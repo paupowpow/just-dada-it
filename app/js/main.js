@@ -1,6 +1,8 @@
-const inputForm = document.querySelector("#inputForm");
-const inputBox = document.querySelector("#inputBox");
+const submitButton = document.querySelector("#submitButton");
+const inputBox = document.querySelector("#yourtext");
 const outputBox = document.querySelector("#outputBox");
+const fontSelector = document.querySelector("#font");
+const snippet = document.querySelector("#snippet");
 
 const enNouSuf = ['acy', 'al', 'ance', 'ence', 'dom', 'er', 'or', 'ism', 'ist', 'ity', 'ty', 'ment', 'ness', 'ship', 'sion', 'tion'];
 const enVerSuf = ['ate', 'en', 'ify', 'fy', 'ize', 'ise'];
@@ -15,6 +17,7 @@ function handleText() {
     let inputArray = inputString.split(" ");
     let wordsWithoutEndings = separateWordsFromWords(inputArray);
     let splitArray = splitWords(wordsWithoutEndings);
+    console.log(splitArray);
 }
 
 function separateWordsFromWords(inputArray) {
@@ -89,7 +92,7 @@ function splitIt(word, resultArray) {
         resultArray.push(word);
         return resultArray;
     }
-    const numberOfLetters = giveNumberOfLetters();
+    const numberOfLetters = 3;//giveNumberOfLetters();
     if (word.length >= numberOfLetters) {
         let unit1 = word.substring(0, numberOfLetters);
         resultArray.push(unit1);
@@ -112,5 +115,43 @@ function giveNumberOfLetters() {
     return probaArray[Math.floor(Math.random() * probaArray.length)];
 }
 
+// adapted from https://javascript.info/mouse-drag-and-drop
+snippet.onmousedown = function(e) {
+	snippet.style.position = 'absolute';
+	snippet.style.zIndex = '1000';
 
-inputForm.addEventListener('click', handleText);
+	outputBox.append(snippet);
+
+	moveTo(e.pageX, e.pageY);
+
+	function moveTo(pageX, pageY) {
+		snippet.style.left = pageX - snippet.offsetWidth / 2 + 'px';
+		snippet.style.top = pageY - outputBox.offsetTop - snippet.offsetHeight / 2 + 'px';
+	}
+
+	function onMouseMove(e) {
+		moveTo(e.pageX, e.pageY);
+	}
+
+	document.addEventListener('mousemove', onMouseMove);
+
+	snippet.onmouseup = function() {
+		document.removeEventListener('mousemove', onMouseMove);
+		snippet.onmouseup = null;
+	}
+
+	snippet.ondragstart = function() {
+  		return false;
+	};
+}
+
+function handleFontChange(e) {
+	let selectedFont = fontSelector.options[fontSelector.selectedIndex].text;
+	let units = document.querySelectorAll('.canvas .unit');
+	units.forEach(unit => {
+		unit.style.fontFamily = selectedFont;
+	});
+}
+
+fontSelector.addEventListener('change', handleFontChange);
+submitButton.addEventListener('click', handleText);
