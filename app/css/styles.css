@@ -23,7 +23,7 @@ fieldset {
   height: 1000px;
   background-color: #fabada;
   position: relative; }
-  .canvas .unit {
+  .canvas .snippet {
     height: 50px;
     width: 50px;
     position: absolute;
