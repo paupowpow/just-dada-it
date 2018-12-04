@@ -45,6 +45,7 @@ function displayDivs(array) {
     snippets = document.querySelectorAll(".snippet");
     snippets.forEach(snippet => {
         snippet.addEventListener('mousedown', moveSnippet);
+        snippet.addEventListener('touchstart', moveSnippet);
         placeDiv(snippet);
     });
 }
@@ -150,10 +151,11 @@ function giveNumberOfLetters() {
 // adapted from https://javascript.info/mouse-drag-and-drop
 
 function moveSnippet(e) {
+	e.preventDefault();
     let snippet = e.target;
 
-	let shiftX = event.clientX - snippet.getBoundingClientRect().left;
-	let shiftY = event.clientY - snippet.getBoundingClientRect().top;
+    let shiftX = (e.type === 'mousedown' ? event.clientX - snippet.getBoundingClientRect().left : e.touches[0].clientX - snippet.getBoundingClientRect().left);
+ 	let shiftY = (e.type === 'mousedown' ? event.clientY - snippet.getBoundingClientRect().top : e.touches[0].clientY - snippet.getBoundingClientRect().top);
 
 	snippet.style.position = 'absolute';
 	highestZinTown += 1;
@@ -164,17 +166,28 @@ function moveSnippet(e) {
 	function moveTo(pageX, pageY) {
 		snippet.style.left = pageX - shiftX + 'px';
 		snippet.style.top = pageY - shiftY - outputBox.offsetTop + 'px';
+
 	}
 
     document.addEventListener('mousemove', onMouseMove);
+    document.addEventListener('touchmove', onTouchMove);
 
 	function onMouseMove(e) {
 		moveTo(e.pageX, e.pageY);
 	}
 
+	function onTouchMove(e) {
+		moveTo(e.touches[0].pageX, e.touches[0].pageY);
+	}
+
 	snippet.onmouseup = function() {
 		document.removeEventListener('mousemove', onMouseMove);
 		snippet.onmouseup = null;
+	};
+
+	snippet.ontouchend = function() {
+		document.removeEventListener('touchmove', onTouchMove);
+		snippet.ontouchend = null;
 	};
 
 	snippet.ondragstart = function() {
