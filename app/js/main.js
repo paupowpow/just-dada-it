@@ -151,6 +151,10 @@ function giveNumberOfLetters() {
 
 function moveSnippet(e) {
     let snippet = e.target;
+
+	let shiftX = event.clientX - snippet.getBoundingClientRect().left;
+	let shiftY = event.clientY - snippet.getBoundingClientRect().top;
+
 	snippet.style.position = 'absolute';
 	highestZinTown += 1;
 	snippet.style.zIndex = (highestZinTown).toString();
@@ -158,8 +162,8 @@ function moveSnippet(e) {
 	moveTo(e.pageX, e.pageY);
 
 	function moveTo(pageX, pageY) {
-		snippet.style.left = pageX - snippet.offsetWidth / 2 + 'px';
-		snippet.style.top = pageY - outputBox.offsetTop - snippet.offsetHeight / 2 + 'px';
+		snippet.style.left = pageX - shiftX + 'px';
+		snippet.style.top = pageY - shiftY - outputBox.offsetTop + 'px';
 	}
 
     document.addEventListener('mousemove', onMouseMove);
