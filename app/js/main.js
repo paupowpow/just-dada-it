@@ -10,6 +10,7 @@ const enAdjSuf = ['able', 'ible', 'al', 'esque', 'ful', 'ic', 'ical', 'ious', 'o
 const enPronoun = ['I', 'you', 'You', 'he', 'He', 'she', 'She', 'we', 'We', 'they', 'They'];
 const enArticles = ['the', '...'];
 
+let highestZinTown = 2;
 let endingsArray = [];
 
 function handleText() {
@@ -151,7 +152,8 @@ function giveNumberOfLetters() {
 function moveSnippet(e) {
     let snippet = e.target;
 	snippet.style.position = 'absolute';
-	snippet.style.zIndex = '1000';
+	highestZinTown += 1;
+	snippet.style.zIndex = (highestZinTown).toString();
 
 	moveTo(e.pageX, e.pageY);
 

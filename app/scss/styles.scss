@@ -30,7 +30,7 @@ fieldset {
 
 	.snippet {
 		position: absolute;
-
+		z-index: 1;
 		user-select: none;
 		cursor: pointer;
 		padding: 10px;
