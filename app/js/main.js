@@ -124,7 +124,7 @@ function splitIt(word, resultArray) {
         resultArray.push(word);
         return resultArray;
     }
-    const numberOfLetters = 3;//giveNumberOfLetters();
+    const numberOfLetters = giveNumberOfLetters();
     if (word.length >= numberOfLetters) {
         let unit1 = word.substring(0, numberOfLetters);
         resultArray.push(unit1);
@@ -143,7 +143,7 @@ function splitIt(word, resultArray) {
 }
 
 function giveNumberOfLetters() {
-    const probaArray = [1, 2, 2, 2, 2, 2, 2, 3, 3, 3];
+    const probaArray = [1, 1, 1, 2, 2, 2, 2, 3, 3, 3];
     return probaArray[Math.floor(Math.random() * probaArray.length)];
 }
 
@@ -152,53 +152,53 @@ function giveNumberOfLetters() {
 function moveSnippet(e) {
     let snippet = e.target;
 
-	let shiftX = event.clientX - snippet.getBoundingClientRect().left;
-	let shiftY = event.clientY - snippet.getBoundingClientRect().top;
+    let shiftX = event.clientX - snippet.getBoundingClientRect().left;
+    let shiftY = event.clientY - snippet.getBoundingClientRect().top;
 
-	snippet.style.position = 'absolute';
-	highestZinTown += 1;
-	snippet.style.zIndex = (highestZinTown).toString();
+    snippet.style.position = 'absolute';
+    highestZinTown += 1;
+    snippet.style.zIndex = (highestZinTown).toString();
 
-	moveTo(e.pageX, e.pageY);
+    moveTo(e.pageX, e.pageY);
 
-	function moveTo(pageX, pageY) {
-		snippet.style.left = pageX - shiftX + 'px';
-		snippet.style.top = pageY - shiftY - outputBox.offsetTop + 'px';
-	}
+    function moveTo(pageX, pageY) {
+        snippet.style.left = pageX - shiftX + 'px';
+        snippet.style.top = pageY - shiftY - outputBox.offsetTop + 'px';
+    }
 
     document.addEventListener('mousemove', onMouseMove);
 
-	function onMouseMove(e) {
-		moveTo(e.pageX, e.pageY);
-	}
+    function onMouseMove(e) {
+        moveTo(e.pageX, e.pageY);
+    }
 
-	snippet.onmouseup = function() {
-		document.removeEventListener('mousemove', onMouseMove);
-		snippet.onmouseup = null;
-	};
+    snippet.onmouseup = function () {
+        document.removeEventListener('mousemove', onMouseMove);
+        snippet.onmouseup = null;
+    };
 
-	snippet.ondragstart = function() {
-  		return false;
-	};
+    snippet.ondragstart = function () {
+        return false;
+    };
 }
 
 function handleFontChange(e) {
-	let selectedFont = fontSelector.options[fontSelector.selectedIndex].text;
-	let snippets = document.querySelectorAll('.canvas .snippet');
-	snippets.forEach(snippet => {
-		snippet.style.fontFamily = selectedFont;
-	});
+    let selectedFont = fontSelector.options[fontSelector.selectedIndex].text;
+    let snippets = document.querySelectorAll('.canvas .snippet');
+    snippets.forEach(snippet => {
+        snippet.style.fontFamily = selectedFont;
+    });
 }
 
 function placeDiv(snippet) {
     let coordinates = makeRandomCoordinates();
-    snippet.style.left = coordinates[0]+'px';
-    snippet.style.top = coordinates[1]+'px';
+    snippet.style.left = coordinates[0] + 'px';
+    snippet.style.top = coordinates[1] + 'px';
 }
 
 function makeRandomCoordinates() {
-    let xPoint = Math.random()*window.innerWidth;
-    let yPoint = Math.random()*window.innerHeight;
+    let xPoint = Math.random() * window.innerWidth;
+    let yPoint = Math.random() * window.innerHeight;
     return [xPoint, yPoint];
 }
 
