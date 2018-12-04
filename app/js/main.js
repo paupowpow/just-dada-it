@@ -175,9 +175,9 @@ function moveSnippet(e) {
 
 function handleFontChange(e) {
 	let selectedFont = fontSelector.options[fontSelector.selectedIndex].text;
-	let units = document.querySelectorAll('.canvas .unit');
-	units.forEach(unit => {
-		unit.style.fontFamily = selectedFont;
+	let snippets = document.querySelectorAll('.canvas .snippet');
+	snippets.forEach(snippet => {
+		snippet.style.fontFamily = selectedFont;
 	});
 }
 
