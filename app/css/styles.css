@@ -21,7 +21,6 @@ fieldset {
 
 .canvas {
   height: 1000px;
-  background-color: #fabada;
   position: relative; }
   .canvas .snippet {
     position: absolute;
