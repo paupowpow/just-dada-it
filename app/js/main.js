@@ -13,11 +13,24 @@ const enArticles = ['the', '...'];
 let endingsArray = [];
 
 function handleText() {
+    reset();
     let inputString = inputBox.value;
     let inputArray = inputString.split(" ");
     let wordsWithoutEndings = separateWordsFromWords(inputArray);
     let splitArray = splitWords(wordsWithoutEndings);
     displayDivs(splitArray);
+}
+
+function reset() {
+    endingsArray = [];
+    removeDivs();
+}
+
+function removeDivs() {
+    snippets = document.querySelectorAll(".snippet");
+    snippets.forEach(snippet => {
+        outputBox.removeChild(snippet);
+    });
 }
 
 function displayDivs(array) {
