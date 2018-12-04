@@ -136,8 +136,6 @@ function moveSnippet(e) {
 	snippet.style.position = 'absolute';
 	snippet.style.zIndex = '1000';
 
-	// outputBox.append(snippet);
-    console.log(e.pageX, e.pageY);
 	moveTo(e.pageX, e.pageY);
 
 	function moveTo(pageX, pageY) {
@@ -147,10 +145,9 @@ function moveSnippet(e) {
 
     document.addEventListener('mousemove', onMouseMove);
 
-	function onMouseMove() {
+	function onMouseMove(e) {
 		moveTo(e.pageX, e.pageY);
 	}
-
 
 	snippet.onmouseup = function() {
 		document.removeEventListener('mousemove', onMouseMove);
