@@ -88,7 +88,10 @@ function separateWordsFromWords(inputArray) {
             }
         });
         return (newWord === word ? word : newWord);
-    }).filter(word => word !== '');
+    }).filter(word => word !== '')
+        .map(word => {
+            return word.replace(/[^\w\s]/gi, '');
+        });
 }
 
 function extractEndingFromWord(word, regex, addEndingsToArray) {
