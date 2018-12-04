@@ -44,6 +44,7 @@ function displayDivs(array) {
     snippets = document.querySelectorAll(".snippet");
     snippets.forEach(snippet => {
         snippet.addEventListener('mousedown', moveSnippet);
+        placeDiv(snippet);
     });
 }
 
@@ -178,6 +179,18 @@ function handleFontChange(e) {
 	units.forEach(unit => {
 		unit.style.fontFamily = selectedFont;
 	});
+}
+
+function placeDiv(snippet) {
+    let coordinates = makeRandomCoordinates();
+    snippet.style.left = coordinates[0]+'px';
+    snippet.style.top = coordinates[1]+'px';
+}
+
+function makeRandomCoordinates() {
+    let xPoint = Math.random()*window.innerWidth;
+    let yPoint = Math.random()*window.innerHeight;
+    return [xPoint, yPoint];
 }
 
 fontSelector.addEventListener('change', handleFontChange);
