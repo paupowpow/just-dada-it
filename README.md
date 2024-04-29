@@ -1,5 +1,5 @@
 # just-dada-it
-Chops up your text and lets you play with the pieces! #notweird
+Chops up your text and lets you play with the pieces!
 
 Template from this [tutorial](https://css-tricks.com/gulp-for-beginners/).
 * local webserver
